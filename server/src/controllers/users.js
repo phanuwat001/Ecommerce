@@ -64,3 +64,27 @@ export const deleteUser = async (req, res) => {
     res.status(500).json({ message: error.message })
   }
 }
+
+export const changeStatus = async (req ,res) => {
+  const { _id, enabled } = req.body
+
+  try {
+    const user = await User.findOneAndUpdate({ _id }, { enabled })
+
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+
+export const changeRole = async (req ,res) => {
+  const { _id, role } = req.body
+
+  try {
+    const user = await User.findOneAndUpdate({ _id }, { role })
+
+    res.status(200).json(user)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
